@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kelvine Blog — Style tips, fashion trends, and behind-the-scenes stories from our design team." />
+  <title>Blog — Kelvine</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Blog-specific styles ── */
+    .blog-section { padding: var(--space-3xl) 0; }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    /* Blog Posts */
+    .posts-list { display: flex; flex-direction: column; gap: var(--space-xl); }
+
+    .post-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+    .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .post-img-wrap {
+      overflow: hidden;
+      height: 220px;
+    }
+    .post-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .post-card:hover .post-img-wrap img { transform: scale(1.06); }
+
+    .post-content { padding: var(--space-xl); display: flex; flex-direction: column; justify-content: center; }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-sm);
+    }
+    .post-category-tag {
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .post-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: var(--space-sm);
+      color: var(--color-text);
+      transition: var(--transition-fast);
+    }
+    .post-card:hover .post-title { color: var(--color-accent); }
+
+    .post-excerpt {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+    }
+
+    .post-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.82rem;
+    }
+
+    .author-avatar-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    .read-more {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .read-more:hover { gap: 0.6rem; }
+
+    /* Featured Post */
+    .featured-post {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      min-height: 400px;
+      margin-bottom: var(--space-xl);
+      cursor: pointer;
+    }
+    .featured-post img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s ease;
+    }
+    .featured-post:hover img { transform: scale(1.04); }
+    .featured-post-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.1) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-2xl);
+      color: #fff;
+    }
+    .featured-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: rgba(255,255,255,0.1);
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: var(--space-sm);
+      width: fit-content;
+    }
+    .featured-post-overlay h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+    .featured-post-overlay p { font-size: 0.9rem; opacity: 0.8; max-width: 500px; }
+
+    /* Sidebar */
+    .blog-sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: var(--space-lg); }
+
+    .sidebar-widget {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+
+    .widget-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .recent-posts-list { display: flex; flex-direction: column; gap: var(--space-md); }
+
+    .recent-post-item {
+      display: flex;
+      gap: var(--space-sm);
+      cursor: pointer;
+    }
+    .recent-post-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .recent-post-info { flex: 1; }
+    .recent-post-title { font-size: 0.82rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.2rem; }
+    .recent-post-date { font-size: 0.72rem; color: var(--color-text-muted); }
+
+    .tag-cloud { display: flex; gap: var(--space-xs); flex-wrap: wrap; }
+    .tag-pill {
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .tag-pill:hover { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-accent-light); }
+
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
+    }
+
+    @media (max-width: 768px) {
+      .post-card { grid-template-columns: 1fr; }
+      .post-img-wrap { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Search">🔍</button>
+        <button class="nav-icon-btn" title="Wishlist">🤍</button>
+        <button class="nav-icon-btn" id="cart-btn" data-cart-open title="Cart">
+          🛒 <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>Style Journal</h1>
+    <p>Tips, trends, and stories from the world of fashion</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span><span>Blog</span>
+    </div>
+  </section>
+
+  <main>
+    <section class="blog-section">
+      <div class="container">
+
+        <!-- Featured Post -->
+        <div class="featured-post reveal" id="featured-blog-post">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=85"
+               alt="Featured blog post" loading="lazy">
+          <div class="featured-post-overlay">
+            <span class="featured-label">Featured</span>
+            <h2>The Art of Building a Capsule Wardrobe That Lasts</h2>
+            <p>Discover the principles behind a truly timeless wardrobe and how fewer, better items can transform your style and simplify your life.</p>
+            <div style="display:flex;align-items:center;gap:1rem;margin-top:1rem;">
+              <span style="font-size:0.82rem;opacity:0.75;">April 10, 2024</span>
+              <a href="#" class="btn btn-primary">Read Article</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-grid">
+
+          <!-- Posts List -->
+          <div class="posts-list">
+
+            <article class="post-card reveal" id="post-1">
+              <div class="post-img-wrap">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+                     alt="Spring trends" loading="lazy">
+              </div>
+              <div class="post-content">
+                <div class="post-meta">
+                  <span class="post-category-tag">Trends</span>
+                  <span>March 28, 2024</span>
+                  <span>· 5 min read</span>
+                </div>
+                <h2 class="post-title">Spring 2024: The Colour Palette Everyone Is Wearing</h2>
+                <p class="post-excerpt">From butter yellow to sage green, this season's colour story is all about softness and nature. We break down the five key shades to know right now.</p>
+                <div class="post-footer">
+                  <div class="post-author">
+                    <div class="author-avatar-sm">E</div>
+                    <span>Emma Kline</span>
+                  </div>
+                  <a href="#" class="read-more">Read More →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="post-card reveal" id="post-2">
+              <div class="post-img-wrap">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80"
+                     alt="Sustainable fashion" loading="lazy">
+              </div>
+              <div class="post-content">
+                <div class="post-meta">
+                  <span class="post-category-tag">Sustainability</span>
+                  <span>March 14, 2024</span>
+                  <span>· 7 min read</span>
+                </div>
+                <h2 class="post-title">Why Slow Fashion Is the Future We All Need</h2>
+                <p class="post-excerpt">Fast fashion has a hidden cost. We explore how choosing quality over quantity benefits not just your wardrobe, but the planet and the people who make your clothes.</p>
+                <div class="post-footer">
+                  <div class="post-author">
+                    <div class="author-avatar-sm">L</div>
+                    <span>Lara Voss</span>
+                  </div>
+                  <a href="#" class="read-more">Read More →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="post-card reveal" id="post-3">
+              <div class="post-img-wrap">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80"
+                     alt="Styling tips" loading="lazy">
+              </div>
+              <div class="post-content">
+                <div class="post-meta">
+                  <span class="post-category-tag">Style Tips</span>
+                  <span>February 27, 2024</span>
+                  <span>· 4 min read</span>
+                </div>
+                <h2 class="post-title">10 Ways to Style One Blazer for Every Occasion</h2>
+                <p class="post-excerpt">The structured blazer is the most versatile piece in any wardrobe. From boardroom to brunch, here are ten foolproof ways to make it work for you.</p>
+                <div class="post-footer">
+                  <div class="post-author">
+                    <div class="author-avatar-sm">M</div>
+                    <span>Maya Chen</span>
+                  </div>
+                  <a href="#" class="read-more">Read More →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="post-card reveal" id="post-4">
+              <div class="post-img-wrap">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
+                     alt="Denim guide" loading="lazy">
+              </div>
+              <div class="post-content">
+                <div class="post-meta">
+                  <span class="post-category-tag">Guide</span>
+                  <span>February 8, 2024</span>
+                  <span>· 6 min read</span>
+                </div>
+                <h2 class="post-title">The Ultimate Guide to Finding Your Perfect Denim Fit</h2>
+                <p class="post-excerpt">Not all jeans are made equal. We decode every cut — from wide leg to straight, boyfriend to skinny — so you can find the pair that flatters your figure.</p>
+                <div class="post-footer">
+                  <div class="post-author">
+                    <div class="author-avatar-sm">S</div>
+                    <span>Sara James</span>
+                  </div>
+                  <a href="#" class="read-more">Read More →</a>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /posts-list -->
+
+          <!-- Sidebar -->
+          <aside class="blog-sidebar" aria-label="Blog sidebar">
+
+            <!-- Search Widget -->
+            <div class="sidebar-widget">
+              <div class="widget-title">Search</div>
+              <div class="sidebar-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search articles…" aria-label="Search blog posts" style="width:100%;padding:0.6rem 0.75rem 0.6rem 2.2rem;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:0.88rem;background:var(--color-bg);outline:none;font-family:var(--font-body)"/>
+              </div>
+            </div>
+
+            <!-- Recent Posts -->
+            <div class="sidebar-widget">
+              <div class="widget-title">Recent Posts</div>
+              <div class="recent-posts-list">
+                <div class="recent-post-item">
+                  <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=70" alt="Spring trends" loading="lazy">
+                  <div class="recent-post-info">
+                    <div class="recent-post-title">Spring 2024 Colour Palette</div>
+                    <div class="recent-post-date">March 28, 2024</div>
+                  </div>
+                </div>
+                <div class="recent-post-item">
+                  <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=200&q=70" alt="Slow fashion" loading="lazy">
+                  <div class="recent-post-info">
+                    <div class="recent-post-title">Why Slow Fashion Matters</div>
+                    <div class="recent-post-date">March 14, 2024</div>
+                  </div>
+                </div>
+                <div class="recent-post-item">
+                  <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=200&q=70" alt="Blazer styling" loading="lazy">
+                  <div class="recent-post-info">
+                    <div class="recent-post-title">10 Ways to Style a Blazer</div>
+                    <div class="recent-post-date">February 27, 2024</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-widget">
+              <div class="widget-title">Categories</div>
+              <ul style="display:flex;flex-direction:column;gap:0.5rem;">
+                <li style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--color-border);color:var(--color-text-muted);">
+                  <span>Trends</span><span>8</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--color-border);color:var(--color-text-muted);">
+                  <span>Style Tips</span><span>12</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--color-border);color:var(--color-text-muted);">
+                  <span>Sustainability</span><span>5</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;border-bottom:1px solid var(--color-border);color:var(--color-text-muted);">
+                  <span>Guides</span><span>7</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;font-size:0.88rem;padding:0.4rem 0;color:var(--color-text-muted);">
+                  <span>Behind the Scenes</span><span>4</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-widget">
+              <div class="widget-title">Popular Tags</div>
+              <div class="tag-cloud">
+                <span class="tag-pill">Fashion</span>
+                <span class="tag-pill">Style</span>
+                <span class="tag-pill">Trends</span>
+                <span class="tag-pill">Blazer</span>
+                <span class="tag-pill">Denim</span>
+                <span class="tag-pill">Capsule</span>
+                <span class="tag-pill">Spring</span>
+                <span class="tag-pill">Sustainable</span>
+                <span class="tag-pill">Minimalism</span>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="sidebar-widget" style="background:var(--color-dark);color:#fff;text-align:center;">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem;">📩</div>
+              <div style="font-size:0.88rem;font-weight:700;margin-bottom:0.5rem;">Newsletter</div>
+              <p style="font-size:0.8rem;opacity:0.7;margin-bottom:1rem;">Style tips straight to your inbox</p>
+              <input type="email" placeholder="Your email" style="width:100%;padding:0.6rem;border-radius:var(--radius-md);border:none;margin-bottom:0.75rem;font-size:0.85rem;font-family:var(--font-body);">
+              <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Subscribed! 📧','success')">Subscribe</button>
+            </div>
+
+          </aside>
+
+        </div><!-- /blog-grid -->
+
+      </div><!-- /container -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+          <p>Crafting timeless fashion for the modern wardrobe.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Instagram">📸</a>
+            <a href="#" class="social-link" title="Pinterest">📌</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Facebook">📘</a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html">Sale</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Help</h4><ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Kelvine. All rights reserved.</p>
+        <div class="payment-icons"><span>💳 Visa</span><span>💳 Mastercard</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button class="close-cart" id="close-cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal"><span class="label">Subtotal</span><span class="amount cart-total-amount">&#8377;0</span></div>
+      <div class="cart-actions">
+        <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+        <button class="btn btn-outline" onclick="closeCart()">Continue Shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about Kelvine — our story, values, and the team behind the brand." />
+  <title>About Us — Kelvine</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── About page styles ── */
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      padding: var(--space-3xl) 0;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 160px;
+      height: 160px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-lg);
+      z-index: -1;
+    }
+
+    .about-content .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-md);
+    }
+
+    .about-content h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-lg);
+    }
+
+    .about-content p {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Values */
+    .values-section {
+      padding: var(--space-3xl) 0;
+      background: var(--color-dark);
+      color: #fff;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .value-card {
+      text-align: center;
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: var(--transition);
+    }
+
+    .value-card:hover {
+      background: rgba(232,146,124,0.15);
+      border-color: rgba(232,146,124,0.3);
+      transform: translateY(-4px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .value-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .value-card p {
+      font-size: 0.85rem;
+      opacity: 0.65;
+      line-height: 1.7;
+    }
+
+    /* Team */
+    .team-section { padding: var(--space-3xl) 0; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .team-card {
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .team-card:hover { transform: translateY(-4px); }
+
+    .team-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-md);
+      filter: grayscale(20%);
+      transition: var(--transition);
+    }
+
+    .team-card:hover .team-img { filter: grayscale(0%); }
+
+    .team-name { font-weight: 700; font-size: 1rem; margin-bottom: var(--space-xs); }
+
+    .team-role { font-size: 0.82rem; color: var(--color-accent); font-weight: 600; margin-bottom: var(--space-sm); }
+
+    .team-bio { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    /* Stats */
+    .stats-section {
+      padding: var(--space-3xl) 0;
+      background: var(--color-surface);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      text-align: center;
+    }
+
+    .stat-card { padding: var(--space-xl) 0; }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--color-accent);
+      display: block;
+    }
+
+    .stat-label { font-size: 0.88rem; color: var(--color-text-muted); margin-top: var(--space-xs); }
+
+    @media (max-width: 1024px) {
+      .values-grid, .team-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .about-intro { grid-template-columns: 1fr; }
+      .about-img-wrap { order: -1; }
+      .values-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .values-grid, .stats-grid, .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Search">🔍</button>
+        <button class="nav-icon-btn" title="Wishlist">🤍</button>
+        <button class="nav-icon-btn" id="cart-btn" data-cart-open title="Cart">
+          🛒 <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>Our Story</h1>
+    <p>Fashion for those who believe every day deserves style</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span><span>About</span>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- About Intro -->
+    <section class="container">
+      <div class="about-intro">
+        <div class="about-img-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85"
+               alt="Kelvine atelier" loading="lazy" />
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-content reveal">
+          <span class="label">Our Story</span>
+          <h2>Crafted with Intention,<br>Worn with Confidence</h2>
+          <p>Kelvine was born from a simple belief: fashion should be beautiful, thoughtful, and built to last. Founded in 2018 by a group of designers passionate about sustainable style, we set out to create a brand that celebrates the art of dressing well without compromising the planet.</p>
+          <p>Every piece in our collection is crafted with intention — from the selection of premium fabrics to the precision of our tailoring. We work with ethical manufacturers across Europe and partner with family-run mills to ensure fair wages and sustainable practices at every step.</p>
+          <p>Today, Kelvine is home to over 50,000 customers worldwide who share our love for timeless, quality fashion that transcends trends.</p>
+          <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+            <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+            <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section" aria-label="Company statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <span class="stat-number">6+</span>
+            <div class="stat-label">Years in Business</div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number">50K+</span>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number">2K+</span>
+            <div class="stat-label">Unique Products</div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number">30+</span>
+            <div class="stat-label">Countries Served</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section" aria-labelledby="values-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="label" style="color:var(--color-accent)">What We Stand For</span>
+          <h2 id="values-heading" style="color:#fff">Our Values</h2>
+          <p style="color:rgba(255,255,255,0.6)">The principles that guide everything we do</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon">♻️</div>
+            <h3>Sustainability</h3>
+            <p>We use eco-friendly fabrics, minimal packaging, and partner only with certified sustainable manufacturers.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">✨</div>
+            <h3>Quality</h3>
+            <p>Every piece undergoes rigorous quality checks. We believe in fashion that lasts decades, not seasons.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">🤝</div>
+            <h3>Ethical Sourcing</h3>
+            <p>Fair wages, safe working conditions, and transparent supply chains are non-negotiable for us.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">💡</div>
+            <h3>Innovation</h3>
+            <p>We constantly explore new materials, techniques, and designs to push the boundaries of modern fashion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">The People</span>
+          <h2 id="team-heading">Meet the Team</h2>
+          <p>The creative minds and passionate people behind Kelvine</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+                 alt="Isabelle Kelvine" class="team-img" loading="lazy">
+            <div class="team-name">Isabelle Kelvine</div>
+            <div class="team-role">Founder & Creative Director</div>
+            <p class="team-bio">Isabelle's vision for effortless, sustainable luxury is the heart of the brand.</p>
+          </div>
+          <div class="team-card reveal">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                 alt="Marco Bianchi" class="team-img" loading="lazy">
+            <div class="team-name">Marco Bianchi</div>
+            <div class="team-role">Head of Design</div>
+            <p class="team-bio">A Milan-trained designer with 15 years of experience in luxury fashion.</p>
+          </div>
+          <div class="team-card reveal">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+                 alt="Priya Sharma" class="team-img" loading="lazy">
+            <div class="team-name">Priya Sharma</div>
+            <div class="team-role">Sustainability Lead</div>
+            <p class="team-bio">Priya ensures our supply chain meets the highest environmental standards.</p>
+          </div>
+          <div class="team-card reveal">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+                 alt="Tom Clarke" class="team-img" loading="lazy">
+            <div class="team-name">Tom Clarke</div>
+            <div class="team-role">Operations Director</div>
+            <p class="team-bio">Tom keeps the gears turning to ensure your orders arrive on time, every time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" aria-labelledby="about-newsletter-heading">
+      <div class="container">
+        <div class="newsletter-inner">
+          <span class="label">Stay Connected</span>
+          <h2 id="about-newsletter-heading">Join Our Community</h2>
+          <p>Be the first to hear about new collections, exclusive events, and style inspiration.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Your email address" required />
+            <button type="submit" class="btn btn-primary" id="newsletter-submit">Subscribe</button>
+          </form>
+          <p class="newsletter-note">No spam, ever. Unsubscribe at any time.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+          <p>Crafting timeless fashion for the modern wardrobe.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📸</a>
+            <a href="#" class="social-link">📌</a>
+            <a href="#" class="social-link">🐦</a>
+            <a href="#" class="social-link">📘</a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html">Sale</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Help</h4><ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Kelvine. All rights reserved.</p>
+        <div class="payment-icons"><span>💳 Visa</span><span>💳 Mastercard</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button class="close-cart" id="close-cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal"><span class="label">Subtotal</span><span class="amount cart-total-amount">&#8377;0</span></div>
+      <div class="cart-actions">
+        <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+        <button class="btn btn-outline" onclick="closeCart()">Continue Shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kelvine — Discover modern fashion for the contemporary wardrobe. Shop new arrivals, curated collections and exclusive styles." />
+  <title>Kelvine — Modern Fashion for Everyone</title>
+
+  <!-- Favicon (emoji fallback) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" id="logo">Kelvi<span>ne</span></a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Search" aria-label="Search">🔍</button>
+        <button class="nav-icon-btn" title="Wishlist" aria-label="Wishlist">🤍</button>
+        <button class="nav-icon-btn" id="cart-btn" title="Cart" aria-label="Open cart" data-cart-open>
+          🛒
+          <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </button>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <main>
+    <section class="hero" id="hero" aria-label="Hero banner">
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="dot"></span>
+          New Collection 2024
+        </div>
+
+        <h1>
+          Dress with<br>
+          <em>Confidence &</em><br>
+          Style
+        </h1>
+
+        <p class="hero-desc">
+          Explore our curated collections of modern, timeless fashion pieces
+          crafted for the contemporary wardrobe.
+        </p>
+
+        <div class="hero-actions">
+          <a href="shop.html" class="btn btn-primary" id="hero-shop-btn">
+            Shop Now →
+          </a>
+          <a href="#featured" class="btn btn-outline" id="hero-explore-btn">
+            Explore
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h3>2K+</h3>
+            <p>Products</p>
+          </div>
+          <div class="stat-item">
+            <h3>50K+</h3>
+            <p>Customers</p>
+          </div>
+          <div class="stat-item">
+            <h3>4.9★</h3>
+            <p>Rating</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- Background circle decoration -->
+        <div class="hero-bg-circle hero-bg-circle-1"></div>
+
+        <div class="hero-img-wrapper">
+          <!-- Main hero image -->
+          <img
+            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=85"
+            alt="Fashion model wearing Kelvine collection"
+            class="hero-img-main"
+            loading="eager"
+          />
+
+          <!-- Floating Card 1 -->
+          <div class="hero-floating-card card-1">
+            <div class="card-icon bg-accent">🎁</div>
+            <div class="card-text">
+              <p>Free Shipping</p>
+              <p>Over &#8377;8,000</p>
+            </div>
+          </div>
+
+          <!-- Floating Card 2 -->
+          <div class="hero-floating-card card-2">
+            <div class="card-icon bg-accent2">⭐</div>
+            <div class="card-text">
+              <p>Top Rated</p>
+              <p>Collection</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════ MARQUEE ══════════════════ -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">New Arrivals <span class="sep">♦</span></span>
+        <span class="marquee-item">Free Shipping Over &#8377;8,000 <span class="sep">♦</span></span>
+        <span class="marquee-item">Sustainable Fashion <span class="sep">♦</span></span>
+        <span class="marquee-item">Up to 40% Off Sale Items <span class="sep">♦</span></span>
+        <span class="marquee-item">Exclusive Members Discount <span class="sep">♦</span></span>
+        <span class="marquee-item">New Arrivals <span class="sep">♦</span></span>
+        <span class="marquee-item">Free Shipping Over &#8377;8,000 <span class="sep">♦</span></span>
+        <span class="marquee-item">Sustainable Fashion <span class="sep">♦</span></span>
+        <span class="marquee-item">Up to 40% Off Sale Items <span class="sep">♦</span></span>
+        <span class="marquee-item">Exclusive Members Discount <span class="sep">♦</span></span>
+      </div>
+    </div>
+
+    <!-- ══════════════════ CATEGORIES ══════════════════ -->
+    <section class="categories-section" id="categories" aria-labelledby="cat-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Shop By</span>
+          <h2 id="cat-heading">Browse Categories</h2>
+          <p>Find exactly what you're looking for in our curated collections</p>
+        </div>
+
+        <div class="categories-grid">
+          <a href="shop.html?category=Dresses" class="cat-card reveal" id="cat-dresses">
+            <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&q=80"
+                 alt="Dresses collection" loading="lazy">
+            <div class="cat-overlay">
+              <h3>Dresses</h3>
+              <p>32 Items</p>
+            </div>
+          </a>
+
+          <a href="shop.html?category=Tops" class="cat-card reveal" id="cat-tops">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80"
+                 alt="Tops collection" loading="lazy">
+            <div class="cat-overlay">
+              <h3>Tops</h3>
+              <p>48 Items</p>
+            </div>
+          </a>
+
+          <a href="shop.html?category=Bottoms" class="cat-card reveal" id="cat-bottoms">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
+                 alt="Bottoms collection" loading="lazy">
+            <div class="cat-overlay">
+              <h3>Bottoms</h3>
+              <p>26 Items</p>
+            </div>
+          </a>
+
+          <a href="shop.html?category=Outerwear" class="cat-card reveal" id="cat-outerwear">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80"
+                 alt="Outerwear collection" loading="lazy">
+            <div class="cat-overlay">
+              <h3>Outerwear</h3>
+              <p>18 Items</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════ FEATURED PRODUCTS ══════════════════ -->
+    <section class="products-section" id="featured" aria-labelledby="featured-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Curated Picks</span>
+          <h2 id="featured-heading">Featured Products</h2>
+          <p>Handpicked styles loved by our community</p>
+        </div>
+
+        <!-- Tab filters -->
+        <div class="products-tabs" role="tablist">
+          <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">All</button>
+          <button class="tab-btn" data-tab="Tops" role="tab">Tops</button>
+          <button class="tab-btn" data-tab="Dresses" role="tab">Dresses</button>
+          <button class="tab-btn" data-tab="Bottoms" role="tab">Bottoms</button>
+          <button class="tab-btn" data-tab="Outerwear" role="tab">Outerwear</button>
+        </div>
+
+        <!-- Products grid (populated by JS) -->
+        <div class="products-grid" id="featured-products-grid" role="tabpanel">
+          <!-- Populated dynamically by main.js using KELVINE_PRODUCTS -->
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem;">
+          <a href="shop.html" class="btn btn-outline" id="view-all-btn">View All Products →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════ PROMO BANNERS ══════════════════ -->
+    <section class="promo-section" aria-label="Promotional banners">
+      <div class="container">
+        <div class="promo-grid">
+
+          <div class="promo-card reveal" id="promo-summer">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=80"
+                 alt="Summer collection" class="promo-bg" loading="lazy">
+            <div class="promo-overlay"></div>
+            <div class="promo-content">
+              <div class="promo-label">Limited Time</div>
+              <h3>Summer Sale —<br>Up to 40% Off</h3>
+              <a href="shop.html" class="btn" id="promo-summer-btn">Shop the Sale</a>
+            </div>
+          </div>
+
+          <div class="promo-card reveal" id="promo-new">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80"
+                 alt="New arrivals" class="promo-bg" loading="lazy">
+            <div class="promo-overlay"></div>
+            <div class="promo-content">
+              <div class="promo-label">Just In</div>
+              <h3>New Arrivals</h3>
+              <a href="shop.html" class="btn" id="promo-new-btn">Explore</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════ NEWSLETTER ══════════════════ -->
+    <section class="newsletter-section" id="newsletter" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="newsletter-inner">
+          <span class="label">Stay Connected</span>
+          <h2 id="newsletter-heading">Get 10% Off Your<br>First Order</h2>
+          <p>Subscribe to our newsletter and be the first to know about new collections, exclusive offers, and style inspiration.</p>
+
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <input
+              type="email"
+              class="newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              id="newsletter-email"
+              required
+            />
+            <button type="submit" class="btn btn-primary" id="newsletter-submit">Subscribe</button>
+          </form>
+
+          <p class="newsletter-note">No spam, ever. Unsubscribe at any time.</p>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+          <p>Crafting timeless fashion for the modern wardrobe. Quality, style, and sustainability in every piece.</p>
+          <div class="social-links" aria-label="Social media links">
+            <a href="#" class="social-link" title="Instagram" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" title="Pinterest" aria-label="Pinterest">📌</a>
+            <a href="#" class="social-link" title="Twitter" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Facebook" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" title="TikTok" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">New Arrivals</a></li>
+            <li><a href="shop.html?category=Dresses">Dresses</a></li>
+            <li><a href="shop.html?category=Tops">Tops</a></li>
+            <li><a href="shop.html?category=Bottoms">Bottoms</a></li>
+            <li><a href="shop.html?category=Outerwear">Outerwear</a></li>
+            <li><a href="shop.html">Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2024 Kelvine. All rights reserved. Made with ❤️</p>
+        <div class="payment-icons" aria-label="Accepted payments">
+          <span>💳 Visa</span>
+          <span>💳 Mastercard</span>
+          <span>💳 PayPal</span>
+          <span>💳 Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════ CART SIDEBAR ══════════════════ -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button class="close-cart" id="close-cart" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-items" id="cart-items-list">
+      <div class="cart-empty">
+        <div class="empty-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <a href="shop.html" class="btn btn-outline-accent" style="margin-top:1rem" id="cart-start-shopping">
+          Start Shopping
+        </a>
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span class="label">Subtotal</span>
+        <span class="amount cart-total-amount">&#8377;0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+        <button class="btn btn-outline" onclick="closeCart()" id="continue-shopping-btn">Continue Shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast container (dynamically populated) -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts (order matters!) -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

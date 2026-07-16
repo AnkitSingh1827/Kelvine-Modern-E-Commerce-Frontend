@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shop Kelvine's full collection — dresses, tops, bottoms, and outerwear. Filter by category, price, size and color." />
+  <title>Shop — Kelvine</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+</head>
+<body>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Search" aria-label="Search">🔍</button>
+        <button class="nav-icon-btn" title="Wishlist" aria-label="Wishlist">🤍</button>
+        <button class="nav-icon-btn" id="cart-btn" title="Cart" aria-label="Open cart" data-cart-open>
+          🛒
+          <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ══════════════════ PAGE HERO ══════════════════ -->
+  <section class="page-hero" aria-label="Shop header">
+    <h1>Our Collection</h1>
+    <p>Discover your next favourite piece</p>
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Shop</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SHOP BODY ══════════════════ -->
+  <main>
+    <div class="container">
+      <div class="shop-layout">
+
+        <!-- ── Sidebar ── -->
+        <aside class="shop-sidebar" id="shop-sidebar" aria-label="Filters">
+
+          <!-- Search -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Search</div>
+            <div class="sidebar-search">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="sidebar-search" placeholder="Search products…" aria-label="Search products" />
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Category</div>
+            <ul class="category-list" role="list">
+              <li class="category-item active" data-category="all" role="listitem" tabindex="0">
+                All Products <span class="count">12</span>
+              </li>
+              <li class="category-item" data-category="Tops" role="listitem" tabindex="0">
+                Tops <span class="count">4</span>
+              </li>
+              <li class="category-item" data-category="Dresses" role="listitem" tabindex="0">
+                Dresses <span class="count">2</span>
+              </li>
+              <li class="category-item" data-category="Bottoms" role="listitem" tabindex="0">
+                Bottoms <span class="count">2</span>
+              </li>
+              <li class="category-item" data-category="Outerwear" role="listitem" tabindex="0">
+                Outerwear <span class="count">2</span>
+              </li>
+              <li class="category-item" data-category="Sets" role="listitem" tabindex="0">
+                Sets <span class="count">1</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Price Range -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Price Range</div>
+            <div class="price-range-wrap">
+              <input type="range" class="price-slider" id="price-slider"
+                     min="0" max="30000" value="30000" step="500" aria-label="Max price" />
+              <div class="price-labels">
+                <span>&#8377;0</span>
+                <span>Up to <strong id="price-max">&#8377;30,000</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colors -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Color</div>
+            <div class="color-swatches" role="group" aria-label="Color filter">
+              <div class="color-swatch" style="background:#1a1a2e" title="Dark Navy" data-color="#1a1a2e"></div>
+              <div class="color-swatch" style="background:#c2a47a" title="Camel" data-color="#c2a47a"></div>
+              <div class="color-swatch" style="background:#e8927c" title="Coral" data-color="#e8927c"></div>
+              <div class="color-swatch" style="background:#9b89b4" title="Lavender" data-color="#9b89b4"></div>
+              <div class="color-swatch" style="background:#f5e6d3" title="Cream" data-color="#f5e6d3" style="border:1px solid #ddd"></div>
+              <div class="color-swatch" style="background:#5b7fa6" title="Steel Blue" data-color="#5b7fa6"></div>
+              <div class="color-swatch" style="background:#e8e8e0" title="Off White" data-color="#e8e8e0" style="border:1px solid #ddd"></div>
+            </div>
+          </div>
+
+          <!-- Sizes -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Size</div>
+            <div class="size-grid" role="group" aria-label="Size filter">
+              <div class="size-chip" data-size="XS">XS</div>
+              <div class="size-chip" data-size="S">S</div>
+              <div class="size-chip" data-size="M">M</div>
+              <div class="size-chip" data-size="L">L</div>
+              <div class="size-chip" data-size="XL">XL</div>
+              <div class="size-chip" data-size="XXL">XXL</div>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">Rating</div>
+            <div class="rating-options">
+              <label class="rating-opt">
+                <input type="radio" name="rating" value="4" /> ⭐⭐⭐⭐ &amp; Up
+              </label>
+              <label class="rating-opt">
+                <input type="radio" name="rating" value="3" /> ⭐⭐⭐ &amp; Up
+              </label>
+              <label class="rating-opt">
+                <input type="radio" name="rating" value="2" /> ⭐⭐ &amp; Up
+              </label>
+            </div>
+          </div>
+
+          <!-- Clear btn -->
+          <button class="clear-filters-btn" id="clear-filters" aria-label="Clear all filters">
+            ✕ Clear All Filters
+          </button>
+
+        </aside>
+
+        <!-- ── Main Content ── -->
+        <div class="shop-main">
+
+          <!-- Toolbar -->
+          <div class="shop-toolbar">
+            <p class="results-count" id="results-count">
+              Showing <strong>12</strong> of <strong>12</strong> products
+            </p>
+            <div class="toolbar-right">
+              <!-- Mobile filter toggle -->
+              <button class="btn btn-outline" id="filter-toggle" style="display:none"
+                      aria-label="Toggle filters" aria-expanded="false">
+                ⚙️ Filters
+              </button>
+
+              <select class="sort-select" id="sort-select" aria-label="Sort products">
+                <option value="featured">Featured</option>
+                <option value="newest">Newest</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+              </select>
+
+              <div class="view-toggles" role="group" aria-label="View mode">
+                <button class="view-btn active" id="grid-view" title="Grid view" aria-pressed="true">⊞</button>
+                <button class="view-btn" id="list-view" title="List view" aria-pressed="false">☰</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="shop-products-grid" id="shop-products-grid" role="list">
+            <!-- Populated by shop.js -->
+            <div style="text-align:center;padding:4rem;color:var(--color-text-muted);grid-column:1/-1">
+              Loading products…
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <nav class="pagination" id="pagination" aria-label="Product pages"></nav>
+
+        </div><!-- /shop-main -->
+
+      </div><!-- /shop-layout -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+          <p>Crafting timeless fashion for the modern wardrobe.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Instagram">📸</a>
+            <a href="#" class="social-link" title="Pinterest">📌</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Facebook">📘</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">New Arrivals</a></li>
+            <li><a href="shop.html?category=Dresses">Dresses</a></li>
+            <li><a href="shop.html?category=Tops">Tops</a></li>
+            <li><a href="shop.html?category=Bottoms">Bottoms</a></li>
+            <li><a href="shop.html">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Kelvine. All rights reserved.</p>
+        <div class="payment-icons">
+          <span>💳 Visa</span>
+          <span>💳 Mastercard</span>
+          <span>💳 PayPal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button class="close-cart" id="close-cart" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span class="label">Subtotal</span>
+        <span class="amount cart-total-amount">&#8377;0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+        <button class="btn btn-outline" onclick="closeCart()" id="continue-shopping-btn">Continue Shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+
+  <!-- Show filter toggle on mobile -->
+  <script>
+    (function() {
+      const filterToggle = document.getElementById('filter-toggle');
+      if (window.innerWidth <= 768 && filterToggle) {
+        filterToggle.style.display = 'inline-flex';
+      }
+      window.addEventListener('resize', () => {
+        if (filterToggle) filterToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
+      });
+    })();
+  </script>
+</body>
+</html>

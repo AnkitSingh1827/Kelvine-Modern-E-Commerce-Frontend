@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get in touch with the Kelvine team — we'd love to hear from you." />
+  <title>Contact — Kelvine</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Contact page styles ── */
+    .contact-section { padding: var(--space-3xl) 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    /* Info Panel */
+    .contact-info { display: flex; flex-direction: column; gap: var(--space-xl); }
+
+    .contact-info-header .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-md);
+    }
+
+    .contact-info-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .contact-info-header p {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .contact-cards { display: flex; flex-direction: column; gap: var(--space-md); }
+
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .contact-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--color-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-card-body h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-card-body p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .contact-card-body a {
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    /* Social Row */
+    .contact-social { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+    .contact-social h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-social-row { display: flex; gap: var(--space-sm); }
+
+    .contact-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: var(--transition-fast);
+    }
+
+    .contact-social-btn:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+    }
+
+    /* Hours */
+    .hours-table { width: 100%; font-size: 0.85rem; }
+    .hours-table tr { border-bottom: 1px solid var(--color-border); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.5rem 0; color: var(--color-text-muted); }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--color-text); }
+
+    /* Form Panel */
+    .contact-form-panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-header { margin-bottom: var(--space-xl); }
+
+    .form-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .form-header p { font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: var(--space-xs); margin-bottom: var(--space-md); }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-label .req { color: var(--color-accent); }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 0.8rem 1rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      outline: none;
+      transition: var(--transition-fast);
+      width: 100%;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--color-accent);
+      background: var(--color-surface);
+      box-shadow: 0 0 0 3px rgba(232,146,124,0.12);
+    }
+
+    .form-input.error,
+    .form-textarea.error { border-color: var(--color-danger); }
+
+    .form-error-msg {
+      font-size: 0.75rem;
+      color: var(--color-danger);
+      display: none;
+    }
+
+    .form-group.has-error .form-error-msg { display: block; }
+    .form-group.has-error .form-input,
+    .form-group.has-error .form-textarea { border-color: var(--color-danger); }
+
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .form-select { cursor: pointer; }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-check input { accent-color: var(--color-accent); margin-top: 2px; flex-shrink: 0; }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.95rem;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* Success State */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-3xl) var(--space-xl);
+      gap: var(--space-md);
+      min-height: 300px;
+    }
+
+    .form-success.show { display: flex; animation: fadeInUp 0.5s ease; }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(92,184,92,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .form-success h3 { font-family: var(--font-heading); font-size: 1.6rem; }
+
+    .form-success p { color: var(--color-text-muted); max-width: 320px; }
+
+    /* Map placeholder */
+    .map-section { padding: 0; }
+
+    .map-placeholder {
+      width: 100%;
+      height: 360px;
+      background: linear-gradient(135deg, var(--color-dark) 0%, #2d2d50 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      gap: 0.75rem;
+      opacity: 0.9;
+    }
+
+    /* FAQ */
+    .faq-section { padding: var(--space-3xl) 0; background: var(--color-surface); }
+
+    .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); margin-top: var(--space-2xl); }
+
+    .faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-lg);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      background: var(--color-surface);
+      transition: var(--transition-fast);
+      gap: var(--space-md);
+    }
+
+    .faq-question:hover { background: var(--color-bg); }
+
+    .faq-question.open { color: var(--color-accent); }
+
+    .faq-chevron {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-question.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      padding: 0 var(--space-lg);
+      background: var(--color-bg);
+    }
+
+    .faq-answer.open {
+      max-height: 200px;
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-panel { padding: var(--space-lg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Search">🔍</button>
+        <button class="nav-icon-btn" title="Wishlist">🤍</button>
+        <button class="nav-icon-btn" id="cart-btn" data-cart-open title="Cart">
+          🛒 <span class="cart-count" id="cart-count" style="display:none">0</span>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you — reach out any time</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span><span>Contact</span>
+    </div>
+  </section>
+
+  <main>
+    <!-- ══════════════════ CONTACT SECTION ══════════════════ -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Info Panel -->
+          <div class="contact-info">
+            <div class="contact-info-header reveal">
+              <span class="label">Contact Us</span>
+              <h2>Let's Start a Conversation</h2>
+              <p>Whether you have a question about an order, sizing advice, or a partnership proposal — our friendly team is here to help within 24 hours.</p>
+            </div>
+
+            <div class="contact-cards">
+              <div class="contact-card reveal" id="contact-card-email">
+                <div class="contact-card-icon">📧</div>
+                <div class="contact-card-body">
+                  <h4>Email Us</h4>
+                  <p>For general enquiries:<br><a href="mailto:hello@kelvine.com">hello@kelvine.com</a></p>
+                  <p>For orders &amp; returns:<br><a href="mailto:orders@kelvine.com">orders@kelvine.com</a></p>
+                </div>
+              </div>
+
+              <div class="contact-card reveal" id="contact-card-phone">
+                <div class="contact-card-icon">📞</div>
+                <div class="contact-card-body">
+                  <h4>Call Us</h4>
+                  <p><a href="tel:+18005552024">+1 (800) 555-2024</a></p>
+                  <p style="margin-top:0.3rem;font-size:0.78rem;">Mon–Fri, 9am–6pm EST</p>
+                </div>
+              </div>
+
+              <div class="contact-card reveal" id="contact-card-location">
+                <div class="contact-card-icon">📍</div>
+                <div class="contact-card-body">
+                  <h4>Visit Us</h4>
+                  <p>142 Fashion Avenue, Suite 8<br>New York, NY 10036<br>United States</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="contact-card reveal" id="contact-card-hours" style="flex-direction:column;">
+              <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;">⏰ Business Hours</h4>
+              <table class="hours-table">
+                <tr><td>Monday – Friday</td><td>9:00 AM – 6:00 PM</td></tr>
+                <tr><td>Saturday</td><td>10:00 AM – 4:00 PM</td></tr>
+                <tr><td>Sunday</td><td>Closed</td></tr>
+              </table>
+            </div>
+
+            <!-- Social -->
+            <div class="contact-social reveal">
+              <h4>Follow Us</h4>
+              <div class="contact-social-row">
+                <a href="#" class="contact-social-btn" id="social-instagram">📸 Instagram</a>
+                <a href="#" class="contact-social-btn" id="social-pinterest">📌 Pinterest</a>
+                <a href="#" class="contact-social-btn" id="social-tiktok">🎵 TikTok</a>
+              </div>
+            </div>
+
+          </div><!-- /contact-info -->
+
+          <!-- Form Panel -->
+          <div class="contact-form-panel reveal" id="contact-form-panel">
+            <div class="form-header">
+              <h3>Send a Message</h3>
+              <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+
+            <!-- Form -->
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group" id="fg-firstname">
+                  <label class="form-label" for="cf-firstname">First Name <span class="req">*</span></label>
+                  <input type="text" id="cf-firstname" class="form-input" placeholder="Jane" autocomplete="given-name" />
+                  <span class="form-error-msg">Please enter your first name.</span>
+                </div>
+                <div class="form-group" id="fg-lastname">
+                  <label class="form-label" for="cf-lastname">Last Name <span class="req">*</span></label>
+                  <input type="text" id="cf-lastname" class="form-input" placeholder="Doe" autocomplete="family-name" />
+                  <span class="form-error-msg">Please enter your last name.</span>
+                </div>
+              </div>
+
+              <div class="form-group" id="fg-email">
+                <label class="form-label" for="cf-email">Email Address <span class="req">*</span></label>
+                <input type="email" id="cf-email" class="form-input" placeholder="jane@example.com" autocomplete="email" />
+                <span class="form-error-msg">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group" id="fg-subject">
+                <label class="form-label" for="cf-subject">Subject <span class="req">*</span></label>
+                <select id="cf-subject" class="form-select">
+                  <option value="">— Select a topic —</option>
+                  <option value="order">Order Enquiry</option>
+                  <option value="returns">Returns &amp; Exchanges</option>
+                  <option value="sizing">Sizing Help</option>
+                  <option value="wholesale">Wholesale / Partnership</option>
+                  <option value="press">Press &amp; Media</option>
+                  <option value="other">Other</option>
+                </select>
+                <span class="form-error-msg">Please select a subject.</span>
+              </div>
+
+              <div class="form-group" id="fg-message">
+                <label class="form-label" for="cf-message">Message <span class="req">*</span></label>
+                <textarea id="cf-message" class="form-textarea" placeholder="Tell us how we can help…"></textarea>
+                <span class="form-error-msg">Please write your message (min 10 characters).</span>
+              </div>
+
+              <label class="form-check" for="cf-consent" id="consent-label">
+                <input type="checkbox" id="cf-consent" />
+                I agree to the <a href="#" style="color:var(--color-accent)">Privacy Policy</a> and consent to being contacted about my enquiry.
+              </label>
+
+              <button type="submit" class="btn btn-primary form-submit" id="contact-submit-btn">
+                Send Message ✉️
+              </button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="form-success" id="form-success">
+              <div class="success-icon">✅</div>
+              <h3>Message Sent!</h3>
+              <p>Thank you for reaching out. We'll get back to you within 24 hours. Check your inbox for a confirmation.</p>
+              <button class="btn btn-outline-accent" onclick="resetContactForm()" id="send-another-btn">
+                Send Another Message
+              </button>
+            </div>
+          </div><!-- /form-panel -->
+
+        </div><!-- /contact-grid -->
+      </div><!-- /container -->
+    </section>
+
+    <!-- Map Placeholder -->
+    <div class="map-placeholder">
+      <span style="font-size:1.5rem">📍</span>
+      <span>142 Fashion Avenue, New York, NY 10036 — Map embedded on production</span>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Quick Answers</span>
+          <h2 id="faq-heading">Frequently Asked Questions</h2>
+          <p>Can't find what you're looking for? Send us a message above.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How long does standard shipping take?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">Standard shipping takes 5–7 business days within the US. Express shipping (2–3 days) is available at checkout. International orders typically arrive in 10–14 business days.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is your return policy?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">We offer free returns within 30 days of delivery. Items must be unworn, unwashed, with tags still attached. Simply initiate a return via your account dashboard and we'll email you a prepaid label.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do I know which size to order?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">Each product page includes a detailed size guide with measurements in both inches and centimetres. Our pieces generally run true to size. When in doubt, size up for a more relaxed fit.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer international shipping?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">Yes! We ship to over 30 countries worldwide. International shipping rates and estimated delivery times are calculated at checkout based on your location.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I change or cancel my order?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">Orders can be modified or cancelled within 2 hours of placement. After this window, items are prepared for shipping. Please contact us as soon as possible at orders@kelvine.com.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Are your products sustainably made?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">Absolutely. Sustainability is at the core of everything we do. We use eco-certified fabrics, minimal plastic packaging, and partner exclusively with GOTS-certified ethical manufacturers.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Kelvi<span>ne</span></a>
+          <p>Crafting timeless fashion for the modern wardrobe. Quality, style, and sustainability.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Instagram">📸</a>
+            <a href="#" class="social-link" title="Pinterest">📌</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Facebook">📘</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">New Arrivals</a></li>
+            <li><a href="shop.html?category=Dresses">Dresses</a></li>
+            <li><a href="shop.html?category=Tops">Tops</a></li>
+            <li><a href="shop.html">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping &amp; Returns</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Kelvine. All rights reserved. Made with ❤️</p>
+        <div class="payment-icons">
+          <span>💳 Visa</span><span>💳 Mastercard</span><span>💳 PayPal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button class="close-cart" id="close-cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span class="label">Subtotal</span>
+        <span class="amount cart-total-amount">&#8377;0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+        <button class="btn btn-outline" onclick="closeCart()">Continue Shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    /* ── Contact Form Validation ── */
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+
+    function validateField(id, validator) {
+      const fg  = document.getElementById('fg-' + id);
+      const el  = document.getElementById('cf-' + id);
+      const val = el ? el.value.trim() : '';
+      const ok  = validator(val);
+      if (fg) fg.classList.toggle('has-error', !ok);
+      return ok;
+    }
+
+    contactForm?.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const checks = [
+        validateField('firstname', v => v.length >= 2),
+        validateField('lastname',  v => v.length >= 2),
+        validateField('email',     v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)),
+        validateField('subject',   v => v !== ''),
+        validateField('message',   v => v.length >= 10),
+      ];
+
+      const consent = document.getElementById('cf-consent');
+      if (!consent?.checked) {
+        showToast('Please accept the privacy policy to continue.', 'warning');
+        return;
+      }
+
+      if (checks.every(Boolean)) {
+        const btn = document.getElementById('contact-submit-btn');
+        if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+
+        // Simulate network delay
+        setTimeout(() => {
+          contactForm.style.display = 'none';
+          formSuccess?.classList.add('show');
+          showToast('Message sent successfully! ✅', 'success');
+        }, 1200);
+      } else {
+        showToast('Please fix the highlighted fields.', 'warning');
+      }
+    });
+
+    // Clear error on input
+    ['firstname','lastname','email','subject','message'].forEach(id => {
+      const el = document.getElementById('cf-' + id);
+      el?.addEventListener('input', () => {
+        document.getElementById('fg-' + id)?.classList.remove('has-error');
+      });
+    });
+
+    window.resetContactForm = function() {
+      formSuccess?.classList.remove('show');
+      contactForm.style.display = 'block';
+      contactForm.reset();
+      const btn = document.getElementById('contact-submit-btn');
+      if (btn) { btn.textContent = 'Send Message ✉️'; btn.disabled = false; }
+    };
+
+    /* ── FAQ Accordion ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-question').forEach(b => {
+          b.classList.remove('open');
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling?.classList.remove('open');
+        });
+
+        // Open clicked (if wasn't open)
+        if (!isOpen) {
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer?.classList.add('open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
