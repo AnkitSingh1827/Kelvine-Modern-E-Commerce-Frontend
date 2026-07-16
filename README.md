@@ -19,6 +19,10 @@
   - Modern, minimalist aesthetic tailored for luxury/slow fashion brands.
 - **Complete Page Layouts:** Includes Home, Shop, Product Details, Blog, About Us, and Contact forms with basic validation.
 
+<img width="1898" height="867" alt="Screenshot 2026-07-16 190720" src="https://github.com/user-attachments/assets/2bf0adb1-eb3b-4759-8d4a-bfec61dd4f55" />
+<img width="1896" height="862" alt="Screenshot 2026-07-16 190746" src="https://github.com/user-attachments/assets/519ee251-30d1-4dab-ace5-1131c8415fd2" />
+<img width="1895" height="862" alt="Screenshot 2026-07-16 190813" src="https://github.com/user-attachments/assets/3042ed0d-6de1-4371-b229-56f07ff19b72" />
+
 ## 🛠️ Technology Stack
 
 No external CSS or JavaScript frameworks were used.
